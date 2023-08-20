@@ -35,7 +35,7 @@ const getInput = () => {
 }
 
 const getResult = (user, computer) => {
-	if (use === computer) {
+	if (user === computer) {
 		return "DRAW";
 	}
 	
