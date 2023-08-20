@@ -2,8 +2,8 @@
 
 const readline = require("node:readline");
 
-const score = {user: 0, computer: 0}
-const dataGame = ["ROCK", "PAPER", "SCISSORS"]
+const score = { user: 0, computer: 0 };
+const dataGame = ["ROCK", "PAPER", "SCISSORS"];
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -35,37 +35,41 @@ const getInput = () => {
 }
 
 const getResult = (user, computer) => {
-    switch (user) {
-        case "PAPER":
-            if(computer === "ROCK") {
-                score.user += 1;
-                return "YOU WIN";
-            }
-            score.computer += 1;
-            return "YOU LOSE";
-        case "ROCK":
-            if (computer === "SCISSORS") {
-                score.user += 1;
-                return "YOU WIN";
-            }
-            score.computer += 1;
-            return "YOU LOSE";
-        case "SCISSORS":
-            if (computer === "PAPER") {
-                score.user += 1
-                return "YOU WIN"
-            }
-            score.computer += 1
-            return "YOU LOSE"
-    }
+	if (use === computer) {
+		return "DRAW";
+	}
+	
+	switch (user) {
+		case "PAPER":
+			if (computer === "ROCK") {
+				score.user += 1;
+				return "YOU WIN";
+			}
+			score.computer += 1;
+			return "YOU LOSE";
+		case "ROCK":
+			if (computer === "SCISSORS") {
+				score.user += 1;
+				return "YOU WIN";
+			}
+			score.computer += 1;
+			return "YOU LOSE";
+		case "SCISSORS":
+			if (computer === "PAPER") {
+				score.user += 1;
+				return "YOU WIN";
+			}
+			score.computer += 1;
+			return "YOU LOSE";
+	}
 }
 
 const logicGame = async () => {
 	try {
 		const computerInput = dataGame[Math.floor(Math.random() * 3)];
 		const userInput = await getInput();
-        const result = getResult(userInput, computerInput);
-        console.log(`Computer Score Now: ${score.computer}\nYour Score Now: ${score.user}\n\nComputer: ${computerInput}\nYou: ${userInput}\n\n${result}\n`);
+		const result = getResult(userInput, computerInput);
+		console.log(`Computer Score Now: ${score.computer}\nYour Score Now: ${score.user}\n\nComputer: ${computerInput}\nYou: ${userInput}\n\n${result}\n`);
 	} catch (err) {
 		console.error("Error", err.message);
 	} finally {
